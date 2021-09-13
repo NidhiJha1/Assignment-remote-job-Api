@@ -1,22 +1,44 @@
 import React from "react";
+import { Select } from 'antd';
 
-const CategoryList = ({filterItem, usersList}) => {
+
+const { Option } = Select;
+const CategoryList = ({filteredTitle}) => {
     return(
         <>
         
-             <div className="select-box">
+             {/* <div className="select-box">
                 <select>
                  {
-                    usersList.map((curElem) =>{
+                    filteredTitle.map((curElem) =>{
                        return(
-                          
-                           <option key={curElem} value={curElem} onClick={() => filterItem(curElem)}>{curElem}</option>
-                         
+                           <option key={curElem.id} value={curElem.category}>{curElem.category}</option>
                        );
                      })
                    }
              </select>
-             </div>
+             </div> */}
+<div className="select-box">
+<Select
+    showSearch
+    style={{ width: 200 }}
+    placeholder="Select a person"
+    optionFilterProp="children"
+    filterOption={(input, option) =>
+      option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+    }
+  >
+    {
+                    filteredTitle.map((curElem) =>{
+                       return(
+                           <Option key={curElem.id} value={curElem.category}>{curElem.category}</Option>
+                       );
+                     })
+                   }
+ 
+  </Select>
+  </div>
+
         
        </>
     );
