@@ -14,6 +14,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchTitle, setSearchTitle] = useState('');
   const [filteredTitle, setFilteredTitle] = useState([]);
+  
 
 
   useEffect (() => {
@@ -50,6 +51,18 @@ function App() {
     );
   }
 
+  const allCategoty = ['All', users.map(item => item.category)];
+  console.log(allCategoty);
+
+
+const fiteredItem = (catItem) => {
+    const updatedItems = users.filter((curentEle) => {
+        return curentEle.category === catItem;
+    });
+
+    setUsers(updatedItems);
+}
+
 
   return (
     <>
@@ -57,7 +70,7 @@ function App() {
 
          <Route path='/' exact>
              <SearchUser setSearchTitle={setSearchTitle}/> 
-             <CategoryList filteredTitle={filteredTitle}/>
+             {/* <CategoryList filteredTitle={filteredTitle} fiteredItem={fiteredItem}/> */}
              <UserList filteredTitle={filteredTitle}/>   
              
           </Route>

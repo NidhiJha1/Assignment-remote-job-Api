@@ -33,14 +33,16 @@
 
 .site-card-border-less-wrapper {
   box-sizing: border-box;
-  padding: 40px;
-  background: #ececec;
-  width:790px;
-  margin: 20px auto;
+  /* padding: 40px; */
+  /* background: #ececec; */
+  /* width:850px; */
+  margin: 20px;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
-
+.ant-card{
+  margin: 0 auto;
+}
 .card-wrapper{
   margin: 0 auto;
 }

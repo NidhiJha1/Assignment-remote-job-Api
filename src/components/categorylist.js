@@ -3,7 +3,7 @@ import { Select } from 'antd';
 
 
 const { Option } = Select;
-const CategoryList = ({filteredTitle}) => {
+const CategoryList = ({filteredTitle,fiteredItem}) => {
     return(
         <>
         
@@ -28,13 +28,13 @@ const CategoryList = ({filteredTitle}) => {
       option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
     }
   >
-    {
+    {/* {
                     filteredTitle.map((curElem) =>{
                        return(
-                           <Option key={curElem.id} value={curElem.category}>{curElem.category}</Option>
+                           <Option key={curElem.id} value={curElem.category}  onClick={() => fiteredItem(curElem.category)} >{curElem.category}</Option>
                        );
                      })
-                   }
+                   } */}
  
   </Select>
   </div>
