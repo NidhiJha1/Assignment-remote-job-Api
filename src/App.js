@@ -35,6 +35,7 @@ function App() {
     fetchData();
   },[]);
 
+// search by title code
   useEffect(() => {
     setFilteredTitle(
       jobs.filter(item => {
@@ -42,20 +43,20 @@ function App() {
       })
     )
   }, [searchTitle,jobs]);
-  
-  if(isLoading){
-    return (
-      <div className="loading-wrapper"><p>Loading...</p></div>
-    );
-  }
 
-
+//category wise data filter function
 const fiteredItem = (catItem) => {
     const updatedItems = filteredTitle.filter((curentEle) => {
         return curentEle.category === catItem;
     });
 
     setFilteredTitle(updatedItems);
+}
+
+if(isLoading){
+  return (
+    <div className="loading-wrapper"><p>Loading...</p></div>
+  );
 }
 
 
