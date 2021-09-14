@@ -13,7 +13,10 @@ function App() {
   const [jobs,setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTitle, setSearchTitle] = useState('');
+  const [categoryfilter, setCategoryFilter] = useState('');
   const [filteredTitle, setFilteredTitle] = useState([]);
+  const [filteredDate, setFilteredDate] = useState('')
+ 
 
   useEffect (() => {
     const  fetchData = async() => {
@@ -44,21 +47,28 @@ function App() {
     )
   }, [searchTitle,jobs]);
 
-//category wise data filter function
-const fiteredItem = (catItem) => {
-    const updatedItems = filteredTitle.filter((curentEle) => {
-        return curentEle.category === catItem;
-    });
+  useEffect(() => {
+    setFilteredTitle(
+      jobs.filter(item => {
+        return item.category.toLowerCase().includes(categoryfilter.toLowerCase())
+      })
+    )
+  }, [categoryfilter,jobs]);
 
-    setFilteredTitle(updatedItems);
-}
+  useEffect(() => {
+    setFilteredTitle(
+      jobs.filter(item => {
+        return item.category.toLowerCase().includes(filteredDate.toLowerCase())
+      })
+    )
+  }, [filteredDate,jobs]);
 
-if(isLoading){
-  return (
-    <div className="loading-wrapper"><p>Loading...</p></div>
-  );
-}
 
+  if(isLoading){
+    return (
+      <div className="loading-wrapper"><p>Loading...</p></div>
+    );
+  }
 
   return (
     <>
@@ -66,7 +76,7 @@ if(isLoading){
 
          <Route path='/' exact>
              <SearchUser setSearchTitle={setSearchTitle}/> 
-             <CategoryList filteredTitle={filteredTitle} fiteredItem={fiteredItem}/>
+             <CategoryList setCategoryFilter={setCategoryFilter} jobs={jobs} setFilteredDate={setFilteredDate}/>
              <UserList filteredTitle={filteredTitle}/>         
           </Route>
           

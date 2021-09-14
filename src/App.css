@@ -46,3 +46,11 @@
 .card-wrapper{
   margin: 0 auto;
 }
+
+.filter-wrapper{
+  box-sizing: border-box;
+  width:100%;
+  margin: 5px 50px;
+
+}
+
