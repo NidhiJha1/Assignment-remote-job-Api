@@ -4,17 +4,13 @@ import { Link } from "react-router-dom";
 
 const UserList = ({filteredTitle}) => {
   
- 
     return(
            <>
             <div className="site-card-wrapper">
-           
             <Row gutter={16}>
              {
-
               filteredTitle.map((data) =>{
-              return(
-               
+              return(  
               <Col span={8} key={data.id} >
                 <Link to={`/detail/${data.id}`}> 
                 <Card title={`Job title: ${data.title}`} bordered={false} className="card-wrapper">
@@ -26,8 +22,7 @@ const UserList = ({filteredTitle}) => {
                 <p>Required Location:{data.candidate_required_location}</p>
                 </Card>
                 </Link> 
-              </Col>
-              
+               </Col>    
               );
             } ) 
         }

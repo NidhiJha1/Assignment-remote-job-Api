@@ -10,12 +10,10 @@ import CategoryList from "./components/categorylist";
 
 function App() {
 
-  const [users,setUsers] = useState([]);
+  const [jobs,setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTitle, setSearchTitle] = useState('');
   const [filteredTitle, setFilteredTitle] = useState([]);
-  
-
 
   useEffect (() => {
     const  fetchData = async() => {
@@ -26,7 +24,7 @@ function App() {
             throw new Error('Something went Wrong');
           }
            const result = await response.json();
-           setUsers(result.jobs);
+           setJobs(result.jobs);
            setIsLoading(false);
            console.log(result);
   
@@ -39,11 +37,11 @@ function App() {
 
   useEffect(() => {
     setFilteredTitle(
-      users.filter(item => {
+      jobs.filter(item => {
         return item.title.toLowerCase().includes(searchTitle.toLowerCase())
       })
     )
-  }, [searchTitle,users]);
+  }, [searchTitle,jobs]);
   
   if(isLoading){
     return (
@@ -51,16 +49,13 @@ function App() {
     );
   }
 
-  const allCategoty = ['All', users.map(item => item.category)];
-  console.log(allCategoty);
-
 
 const fiteredItem = (catItem) => {
-    const updatedItems = users.filter((curentEle) => {
+    const updatedItems = filteredTitle.filter((curentEle) => {
         return curentEle.category === catItem;
     });
 
-    setUsers(updatedItems);
+    setFilteredTitle(updatedItems);
 }
 
 
@@ -70,14 +65,12 @@ const fiteredItem = (catItem) => {
 
          <Route path='/' exact>
              <SearchUser setSearchTitle={setSearchTitle}/> 
-             {/* <CategoryList filteredTitle={filteredTitle} fiteredItem={fiteredItem}/> */}
-             <UserList filteredTitle={filteredTitle}/>   
-             
+             <CategoryList filteredTitle={filteredTitle} fiteredItem={fiteredItem}/>
+             <UserList filteredTitle={filteredTitle}/>         
           </Route>
           
         <Route path='/detail/:id'>
-          <JobsListView users={users}/>
-
+          <JobsListView jobs={jobs}/>
         </Route>
       
     </div>
