@@ -14,9 +14,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchTitle, setSearchTitle] = useState('');
   const [categoryfilter, setCategoryFilter] = useState('');
+  const [dateFilter, setFilteredDate] = useState('');
   const [filteredTitle, setFilteredTitle] = useState([]);
-  const [filteredDate, setFilteredDate] = useState('')
- 
 
   useEffect (() => {
     const  fetchData = async() => {
@@ -46,11 +45,11 @@ function App() {
       })
     )
   }, [searchTitle,jobs]);
-
+//search by category
   useEffect(() => {
     setFilteredTitle(
       jobs.filter(item => {
-        return item.category.toLowerCase().includes(categoryfilter.toLowerCase())
+        return item.category.toLowerCase().includes(categoryfilter.toLowerCase()) 
       })
     )
   }, [categoryfilter,jobs]);
@@ -58,10 +57,10 @@ function App() {
   useEffect(() => {
     setFilteredTitle(
       jobs.filter(item => {
-        return item.category.toLowerCase().includes(filteredDate.toLowerCase())
+        return item.publication_date.toLowerCase().includes(dateFilter.toLowerCase()) 
       })
     )
-  }, [filteredDate,jobs]);
+  }, [dateFilter,jobs]);
 
 
   if(isLoading){
@@ -73,10 +72,9 @@ function App() {
   return (
     <>
     <div>
-
          <Route path='/' exact>
              <SearchUser setSearchTitle={setSearchTitle}/> 
-             <CategoryList setCategoryFilter={setCategoryFilter} jobs={jobs} setFilteredDate={setFilteredDate}/>
+             <CategoryList jobs={jobs} setCategoryFilter={setCategoryFilter} setFilteredDate={setFilteredDate}/>
              <UserList filteredTitle={filteredTitle}/>         
           </Route>
           

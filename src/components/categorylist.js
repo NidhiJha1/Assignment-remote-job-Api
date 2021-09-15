@@ -1,6 +1,6 @@
 import React from "react";
 import { Select } from 'antd';
-import { DatePicker, Space ,Input} from 'antd';
+import { DatePicker, Space } from 'antd';
 
 const { Option } = Select;
 const CategoryList = ({setCategoryFilter,jobs,setFilteredDate}) => {
